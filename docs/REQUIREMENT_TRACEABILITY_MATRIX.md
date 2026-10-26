@@ -1,0 +1,22 @@
+# Requirement Traceability Matrix (RTM)
+
+**Học phần:** MMA301 – Multiplatform Mobile App Development  
+**Assignment:** Assignment 02 – Integrated E-Commerce Mobile App  
+**Sinh viên:** Trương Hoàng Khang (CE190729)  
+
+---
+
+| ID | Yêu cầu (Requirement) | Bằng chứng UI / Code (UI / Code Evidence) | Vị trí Source Code (Code Location) | Kịch bản kiểm thử (Test Scenario) | Kết quả mong đợi (Expected Outcome) | Trạng thái (Status) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :---: |
+| **R01** | Remote product data từ REST API, fallback an toàn | Danh mục sản phẩm lấy từ DummyJSON REST API, hỗ trợ nạp offline | `src/services/productService.js`, `src/screens/ProductListScreen.jsx` | 1. Kết nối mạng bình thường<br>2. Ngắt mạng / API lỗi | 1. Hiển thị danh sách sản phẩm thật<br>2. Chuyển sang fallback an toàn + nút Thử lại | **Pass** |
+| **R02** | FlatList + pagination / infinite scrolling | Cuộn đến cuối danh sách để nạp trang kế tiếp, footer spinner | `src/screens/ProductListScreen.jsx` (`onEndReached`, `onMomentumScrollBegin`) | Cuộn liên tục xuống đáy danh sách sản phẩm | Nạp thêm trang kế tiếp, có guard chặn trùng lặp request khi đang tải | **Pass** |
+| **R03** | Search / filter danh mục + pull to refresh | Ô tìm kiếm realtime, chip chọn danh mục, kéo để làm mới (`RefreshControl`) | `src/screens/ProductListScreen.jsx`, `src/services/productService.js` | 1. Nhập từ khóa tìm kiếm<br>2. Chọn chip danh mục<br>3. Kéo xuống làm mới | 1. Lọc sản phẩm khớp từ khóa<br>2. Lọc đúng danh mục<br>3. Reset và nạp lại trang đầu | **Pass** |
+| **R04** | Product detail hiển thị chi tiết sản phẩm | Ảnh lớn, gallery thumbnail, giá gốc, giá giảm, đánh giá, tồn kho | `src/screens/ProductDetailScreen.jsx`, `src/components/ProductCard.jsx` | Nhấn vào thẻ sản phẩm từ danh sách hoặc truyền ID | Hiển thị đầy đủ thông tin chi tiết; báo lỗi an toàn nếu ID sai | **Pass** |
+| **R05** | Cart state management | Thêm vào giỏ, tăng/giảm số lượng, xóa sản phẩm khỏi giỏ | `src/context/CartContext.jsx`, `src/components/CartItem.jsx`, `src/screens/CartScreen.jsx` | 1. Thêm sản phẩm 2 lần<br>2. Giảm số lượng về 0<br>3. Bấm xóa | 1. Tăng quantity lên 2<br>2. Tự động xóa khỏi giỏ<br>3. Xóa item lập tức | **Pass** |
+| **R06** | Derived totals | Tự động tính subtotal, discount, shipping, totalAmount động | `src/context/CartContext.jsx` (`useMemo` selectors) | Thay đổi số lượng item trong giỏ (0, 1, nhiều món) | Tổng tiền, giảm giá và phí ship cập nhật chính xác theo single source | **Pass** |
+| **R07** | Persistence dữ liệu bằng AsyncStorage | Giỏ hàng, Theme, và API Key không bị mất sau khi tắt app | `src/storage/appStorage.js`, `CartContext.jsx`, `ThemeContext.jsx` | Thêm hàng vào giỏ, đổi theme Tối, đóng app hoàn toàn và mở lại | Dữ liệu giỏ hàng và theme được khôi phục nguyên vẹn (hydrated) | **Pass** |
+| **R08** | Firebase Cloud Firestore use case | Đồng bộ Danh sách Yêu thích (Wishlist) và Lịch sử đơn hàng (Orders) | `src/services/firebaseService.js`, `src/context/WishlistContext.jsx`, `WishlistScreen.jsx` | 1. Bấm yêu thích / đặt hàng<br>2. Giả lập offline/lỗi mạng | 1. Ghi và đọc dữ liệu Firebase Firestore<br>2. Fallback sang local cache an toàn | **Pass** |
+| **R09** | Business Notification workflow + permission | Cấp quyền thông báo, phát thông báo khi đặt hàng thành công | `src/services/notificationService.js`, `NotificationContext.jsx`, `CartScreen.jsx`, `SettingsScreen.jsx` | 1. Cho phép quyền và Đặt hàng<br>2. Từ chối quyền | 1. Nhận thông báo "Đặt hàng thành công!"<br>2. App không crash, báo trạng thái từ chối rõ | **Pass** |
+| **R10** | Gemini GenAI grounded catalog + anti-hallucination | Tư vấn mua sắm theo catalog thực, kiểm tra chống ảo giác ID | `src/services/geminiService.js`, `src/screens/AiAssistantScreen.jsx`, `AiRecommendationCard.jsx` | Nhập nhu cầu mua sắm và gửi cho Gemini AI | AI đưa ra lời khuyên + sản phẩm đề xuất được xác thực tồn tại 100% trong kho | **Pass** |
+| **R11** | Debugging evidence (2 lỗi thực tế) | Phân tích root-cause, kiểm tra input/state, sửa đổi và retest | `docs/DEBUG_LOG.md` | 1. Trùng request khi cuộn FlatList<br>2. Sai số kiểu dữ liệu tính tổng tiền Cart | Áp dụng minimal fix, có giả thuyết, giải thích và retest Pass | **Pass** |
+| **R12** | Release readiness & config | Cấu hình Android package, icon, assets, build config | `app.json`, `package.json`, `README.md` | Kiểm tra cấu hình bundle và build profile | Đầy đủ package `com.truonghoangkhang.ce190729.ass2`, assets chuẩn | **Pass** |
