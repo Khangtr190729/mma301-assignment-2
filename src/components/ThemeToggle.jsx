@@ -1,52 +1,35 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
+import { StyleSheet, View, Text, Switch } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 
 export default function ThemeToggle({ showLabel = true, style }) {
   const { isDark, toggleTheme, colors } = useTheme();
 
   return (
-    <TouchableOpacity
-      activeOpacity={0.8}
-      onPress={toggleTheme}
-      style={[
-        styles.toggleBtn,
-        {
-          backgroundColor: isDark ? colors.cardBackground : colors.primaryLight,
-          borderColor: colors.cardBorder,
-        },
-        style,
-      ]}
-    >
-      <View style={styles.contentRow}>
-        <Text style={styles.icon}>{isDark ? '🌙' : '☀️'}</Text>
-        {showLabel && (
-          <Text style={[styles.label, { color: colors.textPrimary }]}>
-            {isDark ? 'Chế độ Tối' : 'Chế độ Sáng'}
-          </Text>
-        )}
-      </View>
-    </TouchableOpacity>
+    <View style={[styles.container, style]}>
+      {showLabel && (
+        <Text style={[styles.label, { color: colors.textPrimary }]}>
+          {isDark ? 'Chế độ Tối' : 'Chế độ Sáng'}
+        </Text>
+      )}
+      <Switch
+        value={isDark}
+        onValueChange={toggleTheme}
+        trackColor={{ false: '#CBD5E1', true: colors.primary }}
+        thumbColor="#FFFFFF"
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  toggleBtn: {
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 20,
-    borderWidth: 1,
-  },
-  contentRow: {
+  container: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
-  },
-  icon: {
-    fontSize: 16,
+    gap: 8,
   },
   label: {
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: '600',
   },
 });

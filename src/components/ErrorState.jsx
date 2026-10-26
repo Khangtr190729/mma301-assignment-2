@@ -12,7 +12,6 @@ export default function ErrorState({
 
   return (
     <View style={[styles.container, style]}>
-      <Text style={styles.icon}>⚠️</Text>
       <Text style={[styles.title, { color: colors.error }]}>{title}</Text>
       <Text style={[styles.message, { color: colors.textSecondary }]}>{message}</Text>
       {onRetry && (
@@ -21,7 +20,7 @@ export default function ErrorState({
           onPress={onRetry}
           style={[styles.retryBtn, { backgroundColor: colors.primary }]}
         >
-          <Text style={styles.retryText}>🔄 Thử lại</Text>
+          <Text style={styles.retryText}>Thử lại</Text>
         </TouchableOpacity>
       )}
     </View>

@@ -94,7 +94,6 @@ export default function AiAssistantScreen({ route, navigation }) {
           ]}
         >
           <View style={styles.bannerHeader}>
-            <Text style={styles.bannerIcon}>✨</Text>
             <View style={{ flex: 1 }}>
               <Text style={[styles.bannerTitle, { color: colors.primary }]}>
                 Gemini Shopping Assistant
@@ -184,10 +183,10 @@ export default function AiAssistantScreen({ route, navigation }) {
             >
               <Text style={[styles.validationText, { color: colors.textPrimary }]}>
                 {result.hallucinatedIds.length > 0
-                  ? `⚠️ Phát hiện ID ảo giác [${result.hallucinatedIds.join(
+                  ? `[Cảnh báo] Phát hiện ID ảo giác [${result.hallucinatedIds.join(
                       ', '
                     )}]. Đã lọc và chỉ hiển thị sản phẩm thực tế.`
-                  : '✓ Đã xác thực Catalog: 100% sản phẩm gợi ý tồn tại trong kho.'}
+                  : '[Đã xác thực] 100% sản phẩm gợi ý tồn tại trong kho.'}
               </Text>
             </View>
 
@@ -202,7 +201,7 @@ export default function AiAssistantScreen({ route, navigation }) {
               ]}
             >
               <Text style={[styles.adviceHeader, { color: colors.primary }]}>
-                💡 Lời khuyên từ AI:
+                Lời khuyên từ AI:
               </Text>
               <Text style={[styles.adviceText, { color: colors.textPrimary }]}>
                 {result.advice}

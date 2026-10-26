@@ -109,7 +109,6 @@ export default function WishlistScreen({ navigation }) {
             },
           ]}
         >
-          <Text style={styles.syncIcon}>🔥</Text>
           <View style={styles.syncTextCol}>
             <Text style={[styles.syncTitle, { color: colors.textPrimary }]}>
               Trạng thái Firebase: {syncStatus.mode}
@@ -138,7 +137,7 @@ export default function WishlistScreen({ navigation }) {
                 { color: activeTab === 'wishlist' ? colors.primary : colors.textSecondary },
               ]}
             >
-              ❤️ Yêu thích ({wishlist.length})
+              Yêu thích ({wishlist.length})
             </Text>
           </TouchableOpacity>
 
@@ -156,7 +155,7 @@ export default function WishlistScreen({ navigation }) {
                 { color: activeTab === 'orders' ? colors.primary : colors.textSecondary },
               ]}
             >
-              📦 Đơn hàng ({orders.length})
+              Đơn hàng ({orders.length})
             </Text>
           </TouchableOpacity>
         </View>
@@ -170,9 +169,8 @@ export default function WishlistScreen({ navigation }) {
             contentContainerStyle={styles.listContent}
             ListEmptyComponent={
               <EmptyState
-                icon="❤️"
                 title="Chưa có sản phẩm yêu thích"
-                message="Hãy đánh dấu tim các sản phẩm bạn quan tâm để xem lại sau nhé."
+                message="Hãy đánh dấu lưu các sản phẩm bạn quan tâm để xem lại sau nhé."
                 actionLabel="Khám phá ngay"
                 onAction={() => navigation.navigate('Catalog')}
               />
@@ -186,7 +184,6 @@ export default function WishlistScreen({ navigation }) {
             contentContainerStyle={styles.listContent}
             ListEmptyComponent={
               <EmptyState
-                icon="📦"
                 title="Chưa có đơn hàng nào"
                 message="Các đơn hàng sau khi thanh toán thành công sẽ được lưu trữ và hiển thị tại đây."
                 actionLabel="Mua sắm ngay"

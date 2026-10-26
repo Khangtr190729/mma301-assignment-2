@@ -77,7 +77,7 @@ export default function ProductDetailScreen({ route, navigation }) {
   const handleAddToCart = () => {
     addToCart(product, quantity);
     Alert.alert(
-      '🛒 Đã thêm vào giỏ',
+      'Đã thêm vào giỏ',
       `Đã thêm ${quantity} x "${product.title}" vào giỏ hàng.`,
       [
         { text: 'Tiếp tục xem', style: 'cancel' },
@@ -104,9 +104,22 @@ export default function ProductDetailScreen({ route, navigation }) {
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => toggleWishlist(product)}
-            style={[styles.floatingWishlist, { backgroundColor: colors.cardBackground }]}
+            style={[
+              styles.floatingWishlist,
+              {
+                backgroundColor: wishlisted ? colors.primary : colors.cardBackground,
+                borderColor: wishlisted ? colors.primary : colors.cardBorder,
+              },
+            ]}
           >
-            <Text style={styles.wishlistIcon}>{wishlisted ? '❤️' : '🤍'}</Text>
+            <Text
+              style={[
+                styles.wishlistBtnText,
+                { color: wishlisted ? '#FFFFFF' : colors.textSecondary },
+              ]}
+            >
+              {wishlisted ? 'Đã lưu' : 'Lưu'}
+            </Text>
           </TouchableOpacity>
         </View>
 
@@ -153,13 +166,12 @@ export default function ProductDetailScreen({ route, navigation }) {
           {/* Rating & Stock */}
           <View style={styles.ratingSection}>
             <View style={styles.starBadge}>
-              <Text style={styles.starIcon}>⭐</Text>
               <Text style={styles.ratingNumber}>
-                {product.rating ? Number(product.rating).toFixed(1) : '4.5'}
+                Đánh giá: {product.rating ? Number(product.rating).toFixed(1) : '4.5'}/5
               </Text>
             </View>
             <Text style={[styles.stockBadge, { color: colors.success }]}>
-              {product.stock > 0 ? `✓ Còn hàng (${product.stock} sản phẩm)` : 'Hết hàng'}
+              {product.stock > 0 ? `Còn hàng (${product.stock} sản phẩm)` : 'Hết hàng'}
             </Text>
           </View>
 
@@ -215,7 +227,6 @@ export default function ProductDetailScreen({ route, navigation }) {
               },
             ]}
           >
-            <Text style={styles.aiIcon}>✨</Text>
             <View style={styles.aiTextContainer}>
               <Text style={[styles.aiTitle, { color: colors.primary }]}>
                 Tư vấn thông minh cùng Gemini AI
@@ -313,19 +324,16 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 14,
     right: 14,
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 8,
+    borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 4,
-    elevation: 3,
   },
-  wishlistIcon: {
-    fontSize: 20,
+  wishlistBtnText: {
+    fontSize: 12,
+    fontWeight: '700',
   },
   thumbnailStrip: {
     paddingHorizontal: 14,

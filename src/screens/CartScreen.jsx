@@ -71,7 +71,7 @@ export default function CartScreen({ navigation }) {
               await clearCart();
 
               Alert.alert(
-                '🎉 Đặt hàng thành công!',
+                'Đặt hàng thành công',
                 `Mã đơn hàng của bạn: ${orderResult.orderId}\nĐơn hàng đã được lưu trữ an toàn${
                   orderResult.syncedCloud ? ' trên Firebase Cloud' : ' cục bộ'
                 }.`,
@@ -95,7 +95,6 @@ export default function CartScreen({ navigation }) {
     <ScreenContainer edges={['top', 'left', 'right', 'bottom']}>
       {cartItems.length === 0 ? (
         <EmptyState
-          icon="🛒"
           title="Giỏ hàng trống"
           message="Bạn chưa có sản phẩm nào trong giỏ hàng. Hãy khám phá và thêm sản phẩm yêu thích nhé!"
           actionLabel="Khám phá ngay"

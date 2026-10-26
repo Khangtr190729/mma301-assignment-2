@@ -59,7 +59,7 @@ export default function SettingsScreen({ navigation }) {
     }
 
     const sent = await triggerCustomNotification(
-      '🔔 Thông báo thử nghiệm MMA301',
+      'Thông báo thử nghiệm MMA301',
       'Hệ thống thông báo Notification Service đang hoạt động hoàn hảo!'
     );
 
@@ -150,8 +150,7 @@ export default function SettingsScreen({ navigation }) {
           ]}
         >
           <View style={styles.aiHeader}>
-            <Text style={styles.aiBadgeIcon}>✨</Text>
-            <Text style={[styles.sectionTitle, { color: colors.textPrimary, marginBottom: 0 }]}>
+            <Text style={[styles.sectionTitle, { color: colors.primary, marginBottom: 0 }]}>
               Cấu hình Gemini AI API Key
             </Text>
           </View>
@@ -215,7 +214,7 @@ export default function SettingsScreen({ navigation }) {
                 { color: isGranted ? colors.success : colors.warning, fontWeight: '700' },
               ]}
             >
-              {isGranted ? '✓ Đã cấp quyền (Granted)' : `Chưa cấp quyền (${permissionStatus})`}
+              {isGranted ? 'Đã cấp quyền (Granted)' : `Chưa cấp quyền (${permissionStatus})`}
             </Text>
           </View>
 
@@ -236,7 +235,7 @@ export default function SettingsScreen({ navigation }) {
               style={[styles.notifBtn, { backgroundColor: isDark ? '#1E3A8A' : '#EFF6FF' }]}
             >
               <Text style={[styles.notifBtnText, { color: colors.primary }]}>
-                🔔 Gửi thông báo thử nghiệm
+                Gửi thông báo thử nghiệm
               </Text>
             </TouchableOpacity>
           </View>
@@ -270,7 +269,7 @@ export default function SettingsScreen({ navigation }) {
           style={[styles.resetBtn, { borderColor: colors.error }]}
         >
           <Text style={[styles.resetBtnText, { color: colors.error }]}>
-            🗑️ Đặt lại bộ nhớ ứng dụng (First-Run Reset)
+            Đặt lại bộ nhớ ứng dụng (First-Run Reset)
           </Text>
         </TouchableOpacity>
       </ScrollView>

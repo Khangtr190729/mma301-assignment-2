@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 
 export default function EmptyState({
-  icon = '📦',
   title = 'Không có dữ liệu',
   message = 'Chưa có sản phẩm hoặc thông tin nào được tìm thấy.',
   actionLabel,
@@ -14,7 +13,6 @@ export default function EmptyState({
 
   return (
     <View style={[styles.container, style]}>
-      <Text style={styles.icon}>{icon}</Text>
       <Text style={[styles.title, { color: colors.textPrimary }]}>{title}</Text>
       <Text style={[styles.message, { color: colors.textSecondary }]}>{message}</Text>
       {actionLabel && onAction && (

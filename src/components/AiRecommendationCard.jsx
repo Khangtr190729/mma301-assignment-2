@@ -22,7 +22,7 @@ export default function AiRecommendationCard({ product, onSelect }) {
     >
       <View style={styles.topRow}>
         <View style={[styles.badge, { backgroundColor: isDark ? '#1E3A8A' : '#EFF6FF' }]}>
-          <Text style={[styles.badgeText, { color: colors.primary }]}>✨ Gemini Verified</Text>
+          <Text style={[styles.badgeText, { color: colors.primary }]}>Gemini Verified</Text>
         </View>
         <Text style={[styles.category, { color: colors.textSecondary }]}>
           {(product.category || '').toUpperCase()}
@@ -42,9 +42,8 @@ export default function AiRecommendationCard({ product, onSelect }) {
           </Text>
 
           <View style={styles.ratingRow}>
-            <Text style={styles.star}>⭐</Text>
             <Text style={[styles.ratingText, { color: colors.textSecondary }]}>
-              {product.rating ? Number(product.rating).toFixed(1) : '4.5'}
+              Đánh giá: {product.rating ? Number(product.rating).toFixed(1) : '4.5'}/5
             </Text>
             <Text style={[styles.price, { color: colors.primary }]}>
               {formatCurrency(product.price)}
@@ -67,7 +66,7 @@ export default function AiRecommendationCard({ product, onSelect }) {
           onPress={() => addToCart(product, 1)}
           style={[styles.addBtn, { backgroundColor: colors.primary }]}
         >
-          <Text style={styles.addBtnText}>+ Thêm vào giỏ</Text>
+          <Text style={styles.addBtnText}>Thêm vào giỏ</Text>
         </TouchableOpacity>
       </View>
     </View>

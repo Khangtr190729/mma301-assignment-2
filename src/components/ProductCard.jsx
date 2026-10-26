@@ -33,7 +33,7 @@ export default function ProductCard({ product, onPress }) {
           <Image source={{ uri: imageUri }} style={styles.thumbnail} resizeMode="contain" />
         ) : (
           <View style={styles.imagePlaceholder}>
-            <Text style={styles.placeholderIcon}>🛍️</Text>
+            <Text style={[styles.placeholderText, { color: colors.textMuted }]}>No image</Text>
           </View>
         )}
 
@@ -48,9 +48,22 @@ export default function ProductCard({ product, onPress }) {
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => toggleWishlist(product)}
-          style={[styles.wishlistBtn, { backgroundColor: colors.cardBackground }]}
+          style={[
+            styles.wishlistBtn,
+            {
+              backgroundColor: wishlisted ? colors.primary : colors.cardBackground,
+              borderColor: wishlisted ? colors.primary : colors.cardBorder,
+            },
+          ]}
         >
-          <Text style={styles.heartIcon}>{wishlisted ? '❤️' : '🤍'}</Text>
+          <Text
+            style={[
+              styles.wishlistBtnText,
+              { color: wishlisted ? '#FFFFFF' : colors.textSecondary },
+            ]}
+          >
+            {wishlisted ? 'Đã lưu' : 'Lưu'}
+          </Text>
         </TouchableOpacity>
       </View>
 
@@ -64,9 +77,8 @@ export default function ProductCard({ product, onPress }) {
         </Text>
 
         <View style={styles.ratingRow}>
-          <Text style={styles.star}>⭐</Text>
           <Text style={[styles.ratingText, { color: colors.textSecondary }]}>
-            {product.rating ? Number(product.rating).toFixed(1) : '4.5'}
+            Đánh giá: {product.rating ? Number(product.rating).toFixed(1) : '4.5'}/5
           </Text>
           {product.stock !== undefined && (
             <Text style={[styles.stockText, { color: product.stock < 10 ? colors.warning : colors.textMuted }]}>
@@ -85,7 +97,7 @@ export default function ProductCard({ product, onPress }) {
             onPress={() => addToCart(product, 1)}
             style={[styles.addBtn, { backgroundColor: colors.primary }]}
           >
-            <Text style={styles.addBtnText}>+ Thêm</Text>
+            <Text style={styles.addBtnText}>Thêm</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -141,19 +153,20 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 8,
     right: 8,
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 8,
+    borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
   },
-  heartIcon: {
-    fontSize: 14,
+  wishlistBtnText: {
+    fontSize: 11,
+    fontWeight: '700',
+  },
+  placeholderText: {
+    fontSize: 12,
+    fontWeight: '500',
   },
   infoContainer: {
     padding: 10,

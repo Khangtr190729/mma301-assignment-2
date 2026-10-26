@@ -149,27 +149,27 @@ export default function ProductListScreen({ navigation }) {
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => navigation.navigate('AiAssistant', { catalogProducts: products })}
-            style={[styles.iconButton, { backgroundColor: isDark ? '#1E3A8A' : '#EFF6FF' }]}
+            style={[styles.textActionBtn, { backgroundColor: isDark ? '#1E3A8A' : '#EFF6FF', borderColor: colors.primary }]}
           >
-            <Text style={styles.topIcon}>✨</Text>
+            <Text style={[styles.textActionLabel, { color: colors.primary }]}>AI Tư vấn</Text>
           </TouchableOpacity>
 
           {/* Wishlist Button */}
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => navigation.navigate('Wishlist')}
-            style={[styles.iconButton, { backgroundColor: colors.cardBackground, borderColor: colors.cardBorder }]}
+            style={[styles.textActionBtn, { backgroundColor: colors.cardBackground, borderColor: colors.cardBorder }]}
           >
-            <Text style={styles.topIcon}>❤️</Text>
+            <Text style={[styles.textActionLabel, { color: colors.textPrimary }]}>Yêu thích</Text>
           </TouchableOpacity>
 
           {/* Cart Button with Dynamic Badge */}
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => navigation.navigate('Cart')}
-            style={[styles.iconButton, { backgroundColor: colors.cardBackground, borderColor: colors.cardBorder }]}
+            style={[styles.textActionBtn, { backgroundColor: colors.cardBackground, borderColor: colors.cardBorder }]}
           >
-            <Text style={styles.topIcon}>🛒</Text>
+            <Text style={[styles.textActionLabel, { color: colors.textPrimary }]}>Giỏ hàng</Text>
             <Badge count={totalItems} />
           </TouchableOpacity>
 
@@ -177,9 +177,9 @@ export default function ProductListScreen({ navigation }) {
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => navigation.navigate('Settings')}
-            style={[styles.iconButton, { backgroundColor: colors.cardBackground, borderColor: colors.cardBorder }]}
+            style={[styles.textActionBtn, { backgroundColor: colors.cardBackground, borderColor: colors.cardBorder }]}
           >
-            <Text style={styles.topIcon}>⚙️</Text>
+            <Text style={[styles.textActionLabel, { color: colors.textPrimary }]}>Cài đặt</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -194,7 +194,6 @@ export default function ProductListScreen({ navigation }) {
           },
         ]}
       >
-        <Text style={styles.searchIcon}>🔍</Text>
         <TextInput
           style={[styles.searchInput, { color: colors.textPrimary }]}
           placeholder="Tìm kiếm sản phẩm, thương hiệu..."
@@ -211,7 +210,7 @@ export default function ProductListScreen({ navigation }) {
               fetchCatalog({ reset: true, search: '' });
             }}
           >
-            <Text style={[styles.clearIcon, { color: colors.textMuted }]}>✕</Text>
+            <Text style={[styles.clearIcon, { color: colors.textMuted }]}>Xóa</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -352,17 +351,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 8,
   },
-  iconButton: {
-    width: 38,
-    height: 38,
-    borderRadius: 12,
+  textActionBtn: {
+    paddingHorizontal: 8,
+    paddingVertical: 6,
+    borderRadius: 8,
     borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
     position: 'relative',
   },
-  topIcon: {
-    fontSize: 18,
+  textActionLabel: {
+    fontSize: 11,
+    fontWeight: '700',
   },
   searchBox: {
     flexDirection: 'row',

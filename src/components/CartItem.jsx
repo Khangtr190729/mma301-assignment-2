@@ -42,7 +42,7 @@ export default function CartItem({ item }) {
             onPress={() => removeFromCart(item.id)}
             style={styles.deleteBtn}
           >
-            <Text style={[styles.deleteIcon, { color: colors.error }]}>✕</Text>
+            <Text style={[styles.deleteText, { color: colors.error }]}>Xóa</Text>
           </TouchableOpacity>
         </View>
 
@@ -132,11 +132,12 @@ const styles = StyleSheet.create({
     marginRight: 8,
   },
   deleteBtn: {
-    padding: 4,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
   },
-  deleteIcon: {
-    fontSize: 16,
-    fontWeight: '700',
+  deleteText: {
+    fontSize: 12,
+    fontWeight: '600',
   },
   unitPrice: {
     fontSize: 12,
