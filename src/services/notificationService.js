@@ -91,7 +91,7 @@ class NotificationService {
 
       await Notifications.scheduleNotificationAsync({
         content: {
-          title: '🎉 Đặt hàng thành công!',
+          title: 'Đặt hàng thành công',
           body: `Đơn hàng #${orderId} (${itemCount} sản phẩm) trị giá $${totalAmount.toFixed(
             2
           )} đã được xác nhận.`,
