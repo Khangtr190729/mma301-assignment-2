@@ -167,3 +167,5 @@ Mọi tài liệu chi tiết phục vụ buổi chấm và phỏng vấn trực 
 3. [Test Matrix](./docs/TEST_MATRIX.md) – 15 test cases chi tiết kèm kết quả thực tế.
 4. [Debug Log](./docs/DEBUG_LOG.md) – 2 lỗi kỹ thuật thực tế với quy trình 5 bước.
 5. [AI Usage Log](./docs/AI_USAGE_LOG.md) – Nhật ký sử dụng AI có kiểm chứng minh bạch.
+#   m m a 3 0 1 - a s s i g n m e n t - 2  
+ 
