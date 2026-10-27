@@ -19,10 +19,11 @@ class GeminiService {
    * @returns {Promise<{ advice: string, recommendations: Array, rawText: string, isValidated: boolean, hallucinatedIds: Array, isFallback: boolean }>}
    */
   async getRecommendations({ userQuery, catalogProducts = [], cartItems = [] }) {
-    const apiKey = await getGeminiApiKey();
+    const storedKey = await getGeminiApiKey();
+    const apiKey = (storedKey && storedKey.trim()) ? storedKey.trim() : (API_CONFIG.DEFAULT_GEMINI_KEY || '').trim();
 
     // 1. If no API key or offline, use rule-based catalog fallback
-    if (!apiKey || !apiKey.trim()) {
+    if (!apiKey) {
       return this._generateCatalogFallback({
         userQuery,
         catalogProducts,
@@ -123,7 +124,8 @@ QUY TẮC BẮT BUỘC:
    * @returns {Promise<string>}
    */
   async compareProducts(productA, productB) {
-    const apiKey = await getGeminiApiKey();
+    const storedKey = await getGeminiApiKey();
+    const apiKey = (storedKey && storedKey.trim()) ? storedKey.trim() : (API_CONFIG.DEFAULT_GEMINI_KEY || '').trim();
     if (!apiKey) {
       return `So sánh nhanh:\n- ${productA.title}: $${productA.price} (Đánh giá: ${productA.rating}⭐)\n- ${productB.title}: $${productB.price} (Đánh giá: ${productB.rating}⭐)\nSản phẩm ${
         productA.price < productB.price ? productA.title : productB.title

@@ -206,6 +206,15 @@ export default function AiAssistantScreen({ route, navigation }) {
               <Text style={[styles.adviceText, { color: colors.textPrimary }]}>
                 {result.advice}
               </Text>
+              {result.isFallback && (
+                <TouchableOpacity
+                  activeOpacity={0.8}
+                  onPress={() => navigation.navigate('Settings')}
+                  style={[styles.configKeyBtn, { backgroundColor: colors.primary }]}
+                >
+                  <Text style={styles.configKeyBtnText}>⚙️ Mở Cài đặt để cấu hình Gemini API Key</Text>
+                </TouchableOpacity>
+              )}
             </View>
 
             {/* Recommended Products Cards */}
@@ -341,5 +350,17 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '700',
     marginBottom: 10,
+  },
+  configKeyBtn: {
+    marginTop: 12,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    alignItems: 'center',
+  },
+  configKeyBtnText: {
+    color: '#FFFFFF',
+    fontWeight: '700',
+    fontSize: 13,
   },
 });
